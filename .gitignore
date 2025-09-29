@@ -1,0 +1,47 @@
+# Node
+node_modules/
+.npm-cache/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Dependency directories
+jspm_packages/
+
+# Build outputs
+/dist/
+/build/
+/.cache/
+/.parcel-cache/
+/.next/
+/out/
+
+# Coverage
+coverage/
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.*.local
+
+# OS
+*.orig
+
+# Local servers
+.http-server.json
+
+# Lockfiles (uncomment desired one to ignore)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml

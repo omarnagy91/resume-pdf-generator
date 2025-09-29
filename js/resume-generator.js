@@ -24,10 +24,10 @@ class ResumeGenerator {
     try {
       const template1 = await fetch('templates/template1.html');
       const template2 = await fetch('templates/template2.html');
-      
+
       this.templates.template1 = await template1.text();
       this.templates.template2 = await template2.text();
-      
+
       console.log('Templates loaded successfully');
     } catch (error) {
       console.error('Error loading templates:', error);
@@ -79,7 +79,7 @@ class ResumeGenerator {
   preview(target) {
     const html = this.generateHTML();
     const element = typeof target === 'string' ? document.querySelector(target) : target;
-    
+
     if (element) {
       element.innerHTML = html;
     } else {
@@ -93,37 +93,83 @@ class ResumeGenerator {
    */
   async generatePDF(filename = 'resume.pdf') {
     const html = this.generateHTML();
-    
-    // Create a temporary container
+
+    // Create a temporary container with proper styling
     const container = document.createElement('div');
     container.innerHTML = html;
-    container.style.position = 'absolute';
+    container.style.position = 'fixed';
+    container.style.top = '0';
     container.style.left = '-9999px';
+    container.style.width = '210mm'; // A4 width
+    container.style.backgroundColor = 'white';
     document.body.appendChild(container);
 
+    // Wait for content to render
+    await new Promise(resolve => setTimeout(resolve, 500));
+
     try {
+      // Find the resume container within
+      const resumeElement = container.querySelector('.resume-container');
+
+      if (!resumeElement) {
+        throw new Error('Resume container not found');
+      }
+
+      // Adjust styles for PDF generation
+      resumeElement.style.boxShadow = 'none';
+      resumeElement.style.borderRadius = '0';
+      resumeElement.style.maxWidth = 'none';
+      resumeElement.style.margin = '0';
+
+      // Prevent page breaks inside all children
+      resumeElement.style.breakInside = 'avoid';
+      resumeElement.style.pageBreakInside = 'avoid';
+      Array.from(resumeElement.querySelectorAll('*')).forEach(el => {
+        el.style.breakInside = 'avoid';
+        el.style.pageBreakInside = 'avoid';
+      });
+
+      // Convert px to mm helper (96 px ≈ 25.4 mm)
+      const pxToMm = (px) => px * 0.264583;
+
+      // Measure the fully rendered height of the resume content
+      const contentWidthPx = resumeElement.scrollWidth;
+      const contentHeightPx = resumeElement.scrollHeight;
+      const pageWidthMm = 210; // A4 width in mm
+      const contentHeightMm = Math.max(pxToMm(contentHeightPx), 1);
+
       const opt = {
-        margin: 0,
+        margin: [5, 5, 5, 5],
         filename: filename,
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { 
+        html2canvas: {
           scale: 2,
           useCORS: true,
-          letterRendering: true
+          letterRendering: true,
+          logging: false,
+          scrollY: 0,
+          scrollX: 0,
+          windowWidth: contentWidthPx
         },
-        jsPDF: { 
-          unit: 'mm', 
-          format: 'a4', 
-          orientation: 'portrait' 
-        }
+        jsPDF: {
+          unit: 'mm',
+          // Use a single custom-sized page: A4 width, dynamic height
+          format: [pageWidthMm, contentHeightMm + 10],
+          orientation: 'portrait',
+          compress: true
+        },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
       };
 
-      await html2pdf().set(opt).from(container).save();
+      console.log('Generating PDF...');
+      await html2pdf().set(opt).from(resumeElement).save();
       console.log('PDF generated successfully');
     } catch (error) {
       console.error('Error generating PDF:', error);
       throw error;
     } finally {
+      // Wait a bit before removing to ensure PDF is saved
+      await new Promise(resolve => setTimeout(resolve, 300));
       document.body.removeChild(container);
     }
   }
@@ -142,6 +188,29 @@ class ResumeGenerator {
    */
   getAvailableTemplates() {
     return Object.keys(this.templates);
+  }
+
+  /**
+   * Alternative method: Open print dialog for manual PDF generation
+   * Use this as fallback if generatePDF() fails
+   */
+  printResume() {
+    const html = this.generateHTML();
+
+    // Open in new window for printing
+    const printWindow = window.open('', '_blank');
+    if (printWindow) {
+      printWindow.document.write(html);
+      printWindow.document.close();
+
+      // Wait for content to load then print
+      printWindow.onload = function () {
+        printWindow.focus();
+        setTimeout(() => {
+          printWindow.print();
+        }, 500);
+      };
+    }
   }
 }
 

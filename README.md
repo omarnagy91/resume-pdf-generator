@@ -19,6 +19,16 @@ A lightweight, browser-based resume generator that creates beautiful PDF resumes
 4. Click "Preview Resume" to see your resume
 5. Click "Download PDF" to save your resume
 
+### ⚠️ Important: Printing with Backgrounds
+
+When using the **Print Resume** button, you must enable background graphics in your print dialog:
+
+- **Chrome/Edge:** More settings → Check "Background graphics"
+- **Firefox:** Check "Print backgrounds (colors & images)"
+- **Safari:** Check "Print backgrounds"
+
+The templates include CSS to force background printing, but some browsers still require manual settings adjustment.
+
 ## Using Your Own Data
 
 ### Option 1: Upload JSON File

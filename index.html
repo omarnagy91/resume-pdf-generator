@@ -284,6 +284,13 @@
                     <button class="btn btn-secondary" onclick="downloadPDF()" id="downloadBtn" disabled>
                         ⬇ Download PDF
                     </button>
+                    <button class="btn btn-tertiary" onclick="printResume()" id="printBtn" disabled>
+                        🖨 Print Resume
+                    </button>
+                    <div style="font-size: 0.75rem; color: #666; margin-top: 10px; line-height: 1.4;">
+                        <p style="margin-bottom: 5px;">💡 If PDF download fails, use the Print button</p>
+                        <p style="color: #e74c3c; font-weight: 500;">⚠️ When printing: Enable "Background graphics" in print settings!</p>
+                    </div>
                 </div>
 
                 <div class="section">
@@ -375,6 +382,7 @@
                 // Enable buttons
                 document.getElementById('previewBtn').disabled = false;
                 document.getElementById('downloadBtn').disabled = false;
+                document.getElementById('printBtn').disabled = false;
                 
                 showStatus('Data applied successfully! You can now preview or download.', 'success');
             } catch (error) {
@@ -415,7 +423,7 @@
             }
 
             try {
-                showStatus('Generating PDF... Please wait.', 'info');
+                showStatus('Generating PDF... Please wait (this may take 10-15 seconds).', 'info');
                 document.getElementById('downloadBtn').disabled = true;
                 
                 await generator.generatePDF('resume.pdf');
@@ -423,8 +431,40 @@
                 showStatus('PDF downloaded successfully!', 'success');
                 document.getElementById('downloadBtn').disabled = false;
             } catch (error) {
-                showStatus('Error generating PDF: ' + error.message, 'error');
+                console.error('PDF generation error:', error);
+                showStatus('PDF generation failed. Please try the Print button instead, or check console for details.', 'error');
                 document.getElementById('downloadBtn').disabled = false;
+            }
+        }
+
+        // Print resume (alternative method)
+        function printResume() {
+            if (!dataLoaded) {
+                showStatus('Please apply data first.', 'error');
+                return;
+            }
+
+            // Show reminder about backgrounds
+            const reminder = confirm(
+                '⚠️ IMPORTANT REMINDER \n\n' +
+                'To print with colors and backgrounds, you MUST:\n\n' +
+                '1. Enable "Background graphics" in print settings\n' +
+                '2. Select "Save as PDF" as destination\n\n' +
+                'Chrome/Edge: More settings → Background graphics\n' +
+                'Firefox: Print backgrounds\n' +
+                'Safari: Print backgrounds\n\n' +
+                'Click OK to open print dialog'
+            );
+
+            if (!reminder) {
+                return;
+            }
+
+            try {
+                generator.printResume();
+                showStatus('Print dialog opened. Remember to enable Background Graphics!', 'info');
+            } catch (error) {
+                showStatus('Error opening print dialog: ' + error.message, 'error');
             }
         }
 

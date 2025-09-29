@@ -1,0 +1,157 @@
+{
+  "personalInfo": {
+    "name": "Alex Johnson",
+    "title": "Senior Software Developer",
+    "email": "alex.johnson@email.com",
+    "phone": "+1 (555) 123-4567",
+    "location": "San Francisco, CA",
+    "website": "alexjohnson.dev",
+    "initials": "AJ"
+  },
+  "professionalLinks": [
+    {
+      "icon": "💼",
+      "label": "LinkedIn",
+      "url": "linkedin.com/in/alexjohnson"
+    },
+    {
+      "icon": "⚡",
+      "label": "GitHub",
+      "url": "github.com/alexjohnson"
+    },
+    {
+      "icon": "📚",
+      "label": "Portfolio",
+      "url": "portfolio.alexjohnson.dev"
+    }
+  ],
+  "summary": "Results-driven professional with 6+ years of experience in software development, specializing in scalable web applications and cloud architecture. Proven track record of leading development teams, implementing efficient processes, and delivering high-quality solutions that serve millions of users.",
+  "experience": [
+    {
+      "title": "Senior Software Developer",
+      "company": "TechCorp Inc.",
+      "date": "Jan 2022 - Present",
+      "description": "Lead development of microservices architecture serving 2M+ users daily. Spearhead team of 4 junior developers, providing mentorship and code reviews. Implemented comprehensive CI/CD pipeline using Docker and AWS, improving deployment efficiency by 40%."
+    },
+    {
+      "title": "Full Stack Developer",
+      "company": "StartupXYZ",
+      "date": "Mar 2020 - Dec 2021",
+      "description": "Developed and maintained responsive web applications using React, Node.js, and PostgreSQL. Collaborated closely with UX/UI designers to implement pixel-perfect interfaces. Optimized database queries reducing page load times by 60%."
+    },
+    {
+      "title": "Software Developer",
+      "company": "Digital Solutions LLC",
+      "date": "Jun 2018 - Feb 2020",
+      "description": "Developed e-commerce platforms processing thousands of daily transactions. Implemented secure payment integrations and inventory management systems. Created comprehensive documentation and established coding standards."
+    }
+  ],
+  "projects": [
+    {
+      "title": "E-Commerce Analytics Platform",
+      "tech": ["React", "Node.js", "PostgreSQL", "Redis", "AWS"],
+      "date": "2023 - Present",
+      "description": "Built comprehensive analytics platform for e-commerce businesses, processing over 1M transactions daily. Features real-time dashboards, predictive analytics, and automated reporting.",
+      "links": [
+        { "label": "Live Demo", "url": "#", "icon": "🔗" },
+        { "label": "GitHub", "url": "#", "icon": "📁" },
+        { "label": "Case Study", "url": "#", "icon": "📄" }
+      ]
+    },
+    {
+      "title": "Open Source Data Visualization Library",
+      "tech": ["TypeScript", "D3.js", "WebGL", "Canvas API"],
+      "date": "2021 - Ongoing",
+      "description": "Created and maintain open-source JavaScript library for interactive data visualizations. Used by 500+ developers with 2,000+ GitHub stars.",
+      "links": [
+        { "label": "GitHub", "url": "#", "icon": "📁" },
+        { "label": "Documentation", "url": "#", "icon": "📖" },
+        { "label": "NPM Package", "url": "#", "icon": "📦" }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Science in Computer Science",
+      "school": "University of California, Berkeley",
+      "date": "2014 - 2018",
+      "description": "Graduated Magna Cum Laude with GPA 3.8/4.0. Relevant coursework: Data Structures and Algorithms, Software Engineering, Database Systems, Computer Networks, Machine Learning."
+    }
+  ],
+  "skills": {
+    "grouped": [
+      {
+        "category": "Frontend",
+        "items": ["JavaScript (ES6+)", "TypeScript", "React.js", "Vue.js", "HTML5 & CSS3"]
+      },
+      {
+        "category": "Backend",
+        "items": ["Node.js", "Python", "Java", "PostgreSQL", "MongoDB"]
+      },
+      {
+        "category": "DevOps",
+        "items": ["Docker", "Kubernetes", "AWS", "Jenkins", "Git"]
+      }
+    ],
+    "flat": [
+      "JavaScript (ES6+)", "TypeScript", "React.js", "Node.js", "Python",
+      "Java", "PostgreSQL", "MongoDB", "Redis", "Docker", "Kubernetes",
+      "AWS Services", "Git/GitHub", "Jenkins", "REST APIs", "GraphQL", "Agile/Scrum"
+    ]
+  },
+  "languages": [
+    { "name": "English", "level": "Native" },
+    { "name": "Spanish", "level": "Fluent" },
+    { "name": "French", "level": "Intermediate" },
+    { "name": "German", "level": "Basic" }
+  ],
+  "certifications": [
+    {
+      "name": "AWS Certified Solutions Architect",
+      "issuer": "Amazon Web Services",
+      "year": "2023"
+    },
+    {
+      "name": "Certified Kubernetes Administrator",
+      "issuer": "Cloud Native Computing Foundation",
+      "year": "2022"
+    },
+    {
+      "name": "Professional Scrum Master I",
+      "issuer": "Scrum.org",
+      "year": "2021"
+    }
+  ],
+  "achievements": [
+    {
+      "title": "System Migration Leadership",
+      "description": "Led migration of legacy monolith to microservices, reducing system downtime by 75%"
+    },
+    {
+      "title": "Team Development",
+      "description": "Mentored 8 junior developers, with 6 receiving promotions within 18 months"
+    },
+    {
+      "title": "Cost Optimization",
+      "description": "Optimized application performance resulting in 40% reduction in server costs"
+    },
+    {
+      "title": "Open Source Impact",
+      "description": "Created popular open-source project with 2,000+ GitHub stars and active community"
+    }
+  ],
+  "volunteer": [
+    {
+      "role": "Technical Mentor",
+      "organization": "Code for America",
+      "date": "2021 - Present",
+      "description": "Mentor aspiring developers through coding bootcamps and career transitions. Conduct weekly mentoring sessions, review code, and provide guidance on technical skills."
+    },
+    {
+      "role": "Workshop Facilitator",
+      "organization": "Girls Who Code",
+      "date": "2020 - 2022",
+      "description": "Led programming workshops for high school students, focusing on web development and computer science fundamentals."
+    }
+  ]
+}

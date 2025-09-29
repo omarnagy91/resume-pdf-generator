@@ -1,0 +1,41 @@
+{
+  "name": "resume-generator",
+  "version": "1.0.0",
+  "description": "A lightweight, browser-based resume generator that creates beautiful PDF resumes from JSON data",
+  "main": "js/resume-generator.js",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "start:node": "npx http-server -p 8000"
+  },
+  "keywords": [
+    "resume",
+    "cv",
+    "pdf",
+    "generator",
+    "template",
+    "browser",
+    "html2pdf",
+    "json"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/resume-generator"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "browser": {
+    "html2pdf": "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+  },
+  "files": [
+    "js/",
+    "templates/",
+    "index.html",
+    "sample-data.json",
+    "README.md",
+    "integration-examples.js"
+  ]
+}

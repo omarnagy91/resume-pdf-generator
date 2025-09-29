@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{name}} - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background: #f0f2f5;
+            padding: 20px;
+        }
+
+        .resume-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            background: #34495e;
+            color: white;
+            padding: 40px 30px;
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #3498db;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .profile-title {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 35px;
+        }
+
+        .sidebar-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .sidebar-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #3498db;
+        }
+
+        .contact-list {
+            list-style: none;
+        }
+
+        .contact-item {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            word-break: break-all;
+        }
+
+        .contact-icon {
+            width: 16px;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        .skills-container {
+            margin-bottom: 20px;
+        }
+
+        .skill-group {
+            margin-bottom: 20px;
+        }
+
+        .skill-group-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #3498db;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 6px;
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        .language-level {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+        }
+
+        .links-list {
+            list-style: none;
+        }
+
+        .link-item {
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .main-content {
+            padding: 40px;
+            background: white;
+        }
+
+        .header-main {
+            margin-bottom: 40px;
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .main-subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .summary-box {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 40px;
+        }
+
+        .summary-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+            text-align: justify;
+        }
+
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .content-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-header {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            position: relative;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: #3498db;
+        }
+
+        .experience-entry, .project-entry, .education-entry {
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .experience-entry:last-child, .project-entry:last-child, .education-entry:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .entry-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .entry-date {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            background: #ecf0f1;
+            padding: 4px 12px;
+            border-radius: 12px;
+            white-space: nowrap;
+        }
+
+        .entry-company {
+            font-size: 0.95rem;
+            color: #3498db;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .entry-description {
+            color: #555;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .project-tech {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 10px 0;
+        }
+
+        .tech-tag {
+            background: #3498db;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            margin-top: 12px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            border: 1px solid #3498db;
+            border-radius: 4px;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .achievement-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .achievement-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .achievement-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .volunteer-entry {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #27ae60;
+        }
+
+        .volunteer-entry:last-child {
+            margin-bottom: 0;
+        }
+
+        .volunteer-role {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 4px;
+        }
+
+        .volunteer-org {
+            color: #27ae60;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .certifications-list {
+            list-style: none;
+        }
+
+        .certification-item {
+            margin-bottom: 12px;
+        }
+
+        .cert-name {
+            font-weight: 500;
+            margin-bottom: 2px;
+            font-size: 0.85rem;
+        }
+
+        .cert-issuer {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .resume-container {
+                box-shadow: none;
+                border-radius: 0;
+                max-width: none;
+            }
+
+            .content-section {
+                break-inside: avoid;
+            }
+
+            .experience-entry, .project-entry, .education-entry {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <aside class="sidebar">
+            <div class="profile-section">
+                <div class="profile-image">{{initials}}</div>
+                <h1 class="profile-name">{{name}}</h1>
+                <p class="profile-title">{{title}}</p>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Contact</h3>
+                <ul class="contact-list">
+                    <li class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <span>{{email}}</span>
+                    </li>
+                    <li class="contact-item">
+                        <span class="contact-icon">📱</span>
+                        <span>{{phone}}</span>
+                    </li>
+                    <li class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <span>{{location}}</span>
+                    </li>
+                    <li class="contact-item">
+                        <span class="contact-icon">🌐</span>
+                        <span>{{website}}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Professional Links</h3>
+                <div class="links-list">
+                    {{professionalLinks}}
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Technical Skills</h3>
+                <div class="skills-container">
+                    {{skillsGrouped}}
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Languages</h3>
+                <ul class="contact-list">
+                    {{languages}}
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Certifications</h3>
+                <ul class="certifications-list">
+                    {{certifications}}
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header-main">
+                <h1 class="main-title">{{name}}</h1>
+                <p class="main-subtitle">{{title}}</p>
+                <div class="summary-box">
+                    <p class="summary-text">{{summary}}</p>
+                </div>
+            </header>
+
+            <section class="content-section">
+                <h2 class="section-header">Professional Experience</h2>
+                {{experience}}
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-header">Featured Projects</h2>
+                {{projects}}
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-header">Education</h2>
+                {{education}}
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-header">Key Achievements</h2>
+                <div class="achievements-grid">
+                    {{achievements}}
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-header">Volunteer Experience</h2>
+                {{volunteer}}
+            </section>
+        </main>
+    </div>
+</body>
+</html>
